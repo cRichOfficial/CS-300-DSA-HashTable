@@ -1,9 +1,9 @@
 //============================================================================
 // Name        : HashTable.cpp
-// Author      : John Watson
-// Version     : 1.0
-// Copyright   : Copyright © 2017 SNHU COCE
-// Description : Hello World in C++, Ansi-style
+// Author      : Chris Richards
+// Version     : 1.0.1
+// Copyright   : Copyright © 2022 SNHU COCE
+// Description : Implementation of HashTable for Bids
 //============================================================================
 
 #include <algorithm>
@@ -136,7 +136,6 @@ HashTable::~HashTable() {
  * @return The calculated hash
  */
 unsigned int HashTable::hash(int key) {
-    // FIXME (3): Implement logic to calculate a hash value
     // return key tableSize
     return key % this->tableSize;
 }
@@ -147,7 +146,6 @@ unsigned int HashTable::hash(int key) {
  * @param bid The bid to insert
  */
 void HashTable::Insert(Bid bid) {
-    // FIXME (5): Implement logic to insert a bid
     // create the key for the given bid
     int key = this->hash(atoi(bid.bidId.c_str()));
     // retrieve node using key
@@ -174,7 +172,6 @@ void HashTable::Insert(Bid bid) {
  * Print all bids
  */
 void HashTable::PrintAll() {
-    // FIXME (6): Implement logic to print all bids
     // iterate through vector<node>
     Node* current;
     for (int i = 0; i < this->tableSize; ++i) {
@@ -195,7 +192,6 @@ void HashTable::PrintAll() {
  * @param bidId The bid id to search for
  */
 void HashTable::Remove(string bidId) {
-    // FIXME (7): Implement logic to remove a bid
     // set key equal to hash atoi bidID cstring
     Node* current;
     Node* temp;
@@ -230,7 +226,6 @@ void HashTable::Remove(string bidId) {
         }
         current = current->next;
     }
-    // erase node begin and key
 }
 
 /**

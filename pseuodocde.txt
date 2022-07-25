@@ -1,0 +1,85 @@
+# Author: Chris Richards
+# Email: christopher.richards4@snhu.edu
+# File: pseudocode.txt
+
+HashTable Constructor()
+  resize nodes vector to tableSize variable
+End HashTable Constructor
+
+HashTable Constructor(unsigned int size)
+  set the tableSize variable to the size parameter
+  resize nodes vector to tableSize variable
+End HashTable Constructor
+
+HashTable Destructor()
+  iterate through all nodes in node vector
+    delete each node pointer that is iterated
+End HashTable Destructor
+
+unsigned int HashTable hash(int key)
+  return the hashed key using key modulo tableSize
+End HashTable hash
+
+void HashTable Insert(Bid bid)
+  create key using bid.bidId as argument for hash function
+  create a node pointer that points to the node at bucket key in the nodes vector
+  IF (the node does not exist)
+    set the node to a new node with bid passed to the constructor
+    insert the new node at bucket key of the nodes vector
+  END IF
+  ELSE
+    set the current node to the found node
+    WHILE( the next node is not null)
+      set the current node to the next node
+    END WHILE
+      insert the new node as the next node in the bucket, since the next node is null
+  END ELSE
+End HashTable Insert
+
+void HashTable PrintAll()
+  FOR EACH (node in nodes vector)
+    set current node to the current node in the vector
+    WHILE(the current node is not null)
+      print the bid at the current node
+      set the current node to the next node
+    END WHILE
+  END FOR EACH
+End HashTable PrintAll
+
+void HashTable Remove(string bidId)
+  set a pointer to current node and temp node
+  get a hashed key using the bidId as the argument for the hash function
+  
+  set the current node pointer to the node at bucket key in the nodes vector
+  IF(the current node's bidId matches the bidId to remove) #This is the head node of the node list
+    set the temp node pointer to the current node
+    set the current node to the next node # if the next node is null, effectively the bucket will be empty
+    delete the temp node and insert the current node at bucket key in the nodes vector
+    return from function
+  END IF
+  ELSE
+    WHILE(next node is not null)
+      IF(next node's bidId is the bidId to be removed)
+        set temp node pointer to next node
+        set current code to next node's next node
+        delete the temp node
+        return from the function
+      END IF
+    END WHILE
+  END ELSE
+  
+End HashTable Remove
+
+Bid HashTable Search(string bidId)
+  intialize an empty bid
+  initialize a current node pointer
+  set the current node pointer to the node at bucket key in the nodes vector
+  WHILE(current node is not null)
+    IF(current node's bidId is equalt to the bidId being searched)
+      return the current node's bid
+    END IF
+    set the current node to the next node
+  END WHILE
+  
+  return the empty bid # We did not find the bid specified
+End HasTable Search
